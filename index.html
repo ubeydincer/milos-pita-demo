@@ -54,7 +54,9 @@ nav .btn{padding:11px 20px}
 .hero h1 em{font-style:normal;color:var(--terra)}
 .hero p.lead{font-size:19px;color:var(--muted);max-width:480px;margin-bottom:24px}
 .hero p.services{font-size:15px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.services span{white-space:nowrap}
 .services i{font-style:normal;color:var(--terra);margin:0 .6em}
+@media (max-width:600px){.hero p.services{font-size:12.5px;letter-spacing:.12em}.services i{margin:0 .4em}}
 .facts{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 30px;max-width:520px}
 .facts li{display:flex;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.35}
 .facts li>span{font-size:20px}
@@ -191,7 +193,8 @@ footer .big em{color:var(--saffron);font-weight:400}
 
 @media (max-width:960px){
   .hero .wrap,.band,.visit{grid-template-columns:1fr}
-  .hero-art{max-width:520px;margin:0 auto;width:100%}
+  .hero-art{max-width:520px;margin:0 auto;width:100%;order:-1}
+  .hero .wrap{gap:36px}
   .specials,.ways{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:1fr}
   .links{display:none}
@@ -234,7 +237,7 @@ footer .big em{color:var(--saffron);font-weight:400}
   <div class="wrap">
     <div>
       <h1>Mediterranean<br><em>Food</em></h1>
-      <p class="lead services">Dine-in<i>·</i>Carry out<i>·</i>Delivery<i>·</i>Catering</p>
+      <p class="lead services"><span>Dine-in</span><i>·</i><span>Carry out</span><i>·</i><span>Delivery</span><i>·</i><span>Catering</span></p>
       <ul class="facts">
         <li><span>✅</span><div><b>100% Zabiha Halal</b>All our meats</div></li>
         <li><span>🕚</span><div><b>Mon–Sat 11 AM–9 PM</b>Closed Sunday</div></li>
