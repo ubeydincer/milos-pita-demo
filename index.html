@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Milo's Pita — Mediterranean Kitchen</title>
+<link rel="icon" href="https://static.wixstatic.com/media/07a43a_13e13aaa2d6841c8a170012978d8547d~mv2.jpg/v1/fill/w_64,h_64/favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f1e6; --paper:#fffaf2; --ink:#1f2a1c; --muted:#5f6b58;
+  --olive:#3d5a2a; --leaf:#8bbf3f; --terra:#d0643b; --saffron:#f0b43c;
+  --line:rgba(31,42,28,.12); --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.05;letter-spacing:-.02em}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:0}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 10px 24px -10px rgba(208,100,59,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(208,100,59,.8)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(247,241,230,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{font-family:Fraunces,serif;font-weight:800;font-size:26px;color:var(--olive);display:flex;align-items:center;gap:10px}
+.logo img{width:60px;height:60px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 4px 14px -6px rgba(31,42,28,.4);transition:transform .3s}
+.logo:hover img{transform:rotate(-8deg) scale(1.05)}
+footer .logo img{width:96px;height:96px}
+.logo.script img{width:auto;height:46px;border-radius:0;background:none;box-shadow:none;object-fit:contain;filter:drop-shadow(0 1px 0 rgba(61,90,42,.35))}
+.logo.script:hover img{transform:rotate(-3deg) scale(1.04)}
+@media (max-width:600px){.logo.script img{height:38px}}
+.links{display:flex;gap:30px;font-weight:500;font-size:15px}
+.links a{position:relative}
+.links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--terra);transition:width .25s}
+.links a:hover::after{width:100%}
+nav .btn{padding:11px 20px}
+.burger{display:none;background:none;border:0;font-size:26px;cursor:pointer;color:var(--ink)}
+
+/* HERO */
+.hero{padding:64px 0 90px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,4.8vw,66px);font-weight:800;margin:18px 0 22px}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--terra)}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:480px;margin-bottom:24px}
+.facts{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 30px;max-width:520px}
+.facts li{display:flex;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.35}
+.facts li>span{font-size:20px}
+.facts b{display:block;color:var(--ink);font-size:15px}
+@media (max-width:420px){.facts{grid-template-columns:1fr}}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.powered{margin-top:22px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.powered b{color:var(--ink)}
+.pw-ic{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--saffron);display:grid;place-items:center;font-size:13px}
+.status{margin-top:22px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;background:#bbb;box-shadow:0 0 0 0 rgba(139,191,63,.6)}
+.dot.open{background:var(--leaf);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(139,191,63,0)}100%{box-shadow:0 0 0 0 rgba(139,191,63,0)}}
+.hero-art{position:relative;aspect-ratio:1/1.05}
+.blob{position:absolute;inset:4% 0 0 6%;background:var(--olive);border-radius:58% 42% 46% 54% / 48% 56% 44% 52%;animation:morph 14s ease-in-out infinite}
+@keyframes morph{50%{border-radius:42% 58% 60% 40% / 56% 42% 58% 44%}}
+.hero-photo{position:absolute;inset:0 6% 8% 0;border-radius:50% 50% 28px 28px / 42% 42% 28px 28px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(31,42,28,.55)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s ease}
+.hero-art:hover .hero-photo img{transform:scale(1.16)}
+.chip{position:absolute;background:var(--paper);border-radius:18px;padding:14px 18px;box-shadow:0 18px 40px -18px rgba(31,42,28,.45);display:flex;align-items:center;gap:12px;font-size:14px;animation:float 6s ease-in-out infinite}
+.chip b{display:block;font-size:16px}
+.chip .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px}
+.chip.c1{left:-28px;bottom:18%}
+.chip.c1 .ic{background:#fde6d9}
+.chip.c2{right:-10px;top:10%;animation-delay:-3s}
+.chip.c2 .ic{background:#e7f2d6}
+@keyframes float{50%{transform:translateY(-10px)}}
+.stamp{position:absolute;right:2%;bottom:0;width:118px;height:118px;border-radius:50%;background:var(--saffron);display:grid;place-items:center;text-align:center;font-family:Fraunces,serif;font-weight:800;font-size:15px;line-height:1.1;color:var(--ink);transform:rotate(-12deg)}
+.stamp svg{position:absolute;inset:0;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MARQUEE */
+.marquee{background:var(--ink);color:var(--cream);overflow:hidden;padding:20px 0;transform:rotate(-1.2deg);margin:0 -20px}
+.track{display:flex;gap:48px;width:max-content;animation:scroll 32s linear infinite;font-family:Fraunces,serif;font-size:28px;font-style:italic}
+.track span{display:flex;align-items:center;gap:48px;white-space:nowrap}
+.track span::after{content:"✦";color:var(--saffron);font-style:normal;font-size:20px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:48px;flex-wrap:wrap}
+.head h2{font-size:clamp(36px,4.6vw,60px);margin-top:12px;max-width:640px}
+.head p{color:var(--muted);max-width:380px}
+
+/* SPECIALS */
+.specials{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sp{background:var(--paper);border-radius:var(--radius);padding:28px;border:1px solid var(--line);display:flex;flex-direction:column;min-height:270px;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.sp:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px rgba(31,42,28,.5)}
+.sp .day{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sp h3{font-size:28px;margin:12px 0 10px}
+.sp p{font-size:14px;color:var(--muted);flex:1}
+.sp .price{font-family:Fraunces,serif;font-size:40px;font-weight:800;margin-top:18px}
+.sp.hot{background:var(--terra);color:#fff;border:0}
+.sp.hot .day,.sp.hot p{color:rgba(255,255,255,.82)}
+.sp.green{background:var(--olive);color:var(--cream);border:0}
+.sp.green .day,.sp.green p{color:rgba(247,241,230,.75)}
+.sp .bigicon{position:absolute;right:-14px;top:-14px;font-size:90px;opacity:.16;transform:rotate(14deg)}
+
+/* MENU */
+#menu{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.controls{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.tabs,.filters{display:flex;gap:8px;flex-wrap:wrap}
+.tab,.filter{padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font:500 14px Inter,sans-serif;cursor:pointer;transition:all .2s;color:var(--ink)}
+.tab:hover,.filter:hover{border-color:var(--ink)}
+.tab.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.filter.active{background:var(--leaf);border-color:var(--leaf);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
+.item{display:flex;gap:18px;padding:22px 0;border-bottom:1px dashed var(--line);animation:fadeUp .45s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
+.item .txt{flex:1}
+.item .row{display:flex;align-items:baseline;gap:10px}
+.item h4{font-family:Fraunces,serif;font-size:21px;font-weight:600}
+.item .fill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px)}
+.item .pr{font-weight:700;font-size:17px;color:var(--terra)}
+.item p{font-size:14px;color:var(--muted);margin-top:4px}
+.tags{display:flex;gap:6px;margin-top:8px}
+.tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:#e7f2d6;color:var(--olive)}
+.tag.gf{background:#fdf0d3;color:#8a5a00}
+.empty{grid-column:1/-1;padding:40px 0;color:var(--muted);text-align:center}
+
+/* WAYS */
+.ways{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.way{border-radius:var(--radius);padding:30px 26px;background:var(--paper);border:1px solid var(--line);transition:all .3s}
+.way:hover{background:var(--ink);color:var(--cream)}
+.way:hover p{color:rgba(247,241,230,.7)}
+.way .n{font-family:Fraunces,serif;font-size:15px;color:var(--terra);font-weight:600}
+.way .emo{font-size:40px;margin:26px 0 18px}
+.way h3{font-size:26px;margin-bottom:8px}
+.way p{font-size:14px;color:var(--muted)}
+
+/* CATERING BAND */
+.band{background:var(--olive);color:var(--cream);border-radius:34px;padding:70px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.band h2{font-size:clamp(34px,4.4vw,56px)}
+.band h2 em{color:var(--saffron);font-weight:400}
+.band p{color:rgba(247,241,230,.78);margin:18px 0 30px;max-width:460px}
+.band .btn-ghost{color:var(--cream);border-color:var(--cream)}
+.band .btn-ghost:hover{background:var(--cream);color:var(--olive)}
+.loyal{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:30px}
+.loyal h3{font-size:24px;margin-bottom:6px}
+.stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0 14px}
+.stamps i{aspect-ratio:1;border-radius:50%;border:2px dashed rgba(247,241,230,.4);display:grid;place-items:center;font-style:normal;font-size:20px}
+.stamps i.on{background:var(--saffron);border:0}
+.loyal small{color:rgba(247,241,230,.7)}
+.ring{position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;border:60px solid rgba(139,191,63,.14)}
+
+/* VISIT */
+.shots{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:16px;height:520px;margin-bottom:28px}
+.shot{position:relative;border-radius:var(--radius);overflow:hidden;margin:0}
+.shot.big{grid-row:1/3}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.shot:hover img{transform:scale(1.05)}
+.shot figcaption{position:absolute;left:16px;bottom:16px;background:rgba(31,42,28,.78);backdrop-filter:blur(6px);color:var(--cream);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px}
+@media (max-width:760px){.shots{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;height:auto}.shot.big{grid-row:auto;grid-column:1/3}}
+.visit{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:36px}
+.card h3{font-size:30px;margin-bottom:20px}
+.hours li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);list-style:none;font-size:15px}
+.hours li.today{font-weight:700;color:var(--terra)}
+.contact{margin-top:26px;display:grid;gap:10px;font-size:15px}
+.contact a:hover{color:var(--terra)}
+.map{border-radius:var(--radius);overflow:hidden;min-height:420px;border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;min-height:420px;border:0;filter:saturate(.7) contrast(1.05)}
+
+footer{background:var(--ink);color:rgba(247,241,230,.7);padding:60px 0 40px;margin-top:40px}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:end}
+footer .logo{color:var(--cream)}
+footer .big{font-family:Fraunces,serif;font-size:clamp(40px,7vw,96px);color:var(--cream);font-weight:800;line-height:1;width:100%;margin-bottom:30px}
+footer .big em{color:var(--saffron);font-weight:400}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+/* Floating mobile order bar */
+.mbar{display:none}
+
+@media (max-width:960px){
+  .hero .wrap,.band,.visit{grid-template-columns:1fr}
+  .hero-art{max-width:520px;margin:0 auto;width:100%}
+  .specials,.ways{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+  .links{display:none}
+  .links.open{display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;background:var(--cream);padding:24px;gap:18px;border-bottom:1px solid var(--line)}
+  .burger{display:block}
+  nav .btn{display:none}
+  .band{padding:44px 28px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  section{padding:76px 0}
+  .hero{padding:36px 0 70px}
+  .specials,.ways{grid-template-columns:1fr}
+  .chip.c1{left:0}.chip.c2{right:0}
+  .stamp{width:94px;height:94px;font-size:12px}
+  .card{padding:26px}
+  .mbar{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:60;justify-content:center}
+  .mbar .btn{width:100%;justify-content:center}
+  footer{padding-bottom:100px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo script"><img src="milos-logo-script.png" alt="Milo's Pita"></a>
+    <div class="links" id="links">
+      <a href="#specials">Specials</a>
+      <a href="#menu">Menu</a>
+      <a href="#catering">Catering & Loyalty</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <a href="#" data-order class="btn btn-primary">Order Online →</a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Mediterranean restaurant · Chicago</span>
+      <h1>Halal shawarma,<br><em>kabobs</em> &amp; falafel.</h1>
+      <p class="lead">Plates from $15.99, sandwiches from $7.99. Dine-in, carry out, delivery and catering.</p>
+      <ul class="facts">
+        <li><span>✅</span><div><b>100% Zabiha Halal</b>All our meats</div></li>
+        <li><span>🕚</span><div><b>Mon–Sat 11 AM–9 PM</b>Closed Sunday</div></li>
+        <li><span>📍</span><div><b>1335 W Morse Ave</b>Chicago, IL 60626</div></li>
+        <li><span>📞</span><div><b><a href="tel:7737177699">(773) 717-7699</a></b>Call for pickup</div></li>
+      </ul>
+      <div class="cta-row">
+        <a href="#" data-order class="btn btn-primary">Order for pickup →</a>
+        <a href="#menu" class="btn btn-ghost">Explore the menu</a>
+      </div>
+      <div class="powered"><span class="pw-ic">⚡</span><span>Order direct with <b>ChowNow</b> · Pickup &amp; delivery · No app needed</span></div>
+      <div class="status"><span class="dot" id="dot"></span><span id="statusText">Checking hours…</span></div>
+    </div>
+    <div class="hero-art">
+      <div class="blob"></div>
+      <div class="hero-photo"><img src="https://static.wixstatic.com/media/07a43a_6e1b2ac0e3af4629a0b709e175a3cdf0~mv2_d_2880_2304_s_2.jpg/v1/fill/w_1200,h_1260,al_c,q_85/milos-spread.jpg" alt="A spread of shawarma fries, kabob plate, lentil soup, hummus and kefta"></div>
+      <div class="chip c1"><div class="ic">🔥</div><div><b>Shawarma Tuesday</b>$4.99 chicken wrap</div></div>
+      <div class="chip c2"><div class="ic">🌱</div><div><b>15+ vegan dishes</b>Falafel, dips & bowls</div></div>
+      <div class="stamp">
+        <svg viewBox="0 0 120 120"><defs><path id="c" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text font-family="Inter" font-size="10" font-weight="700" fill="#1f2a1c"><textPath href="#c" textLength="286" lengthAdjust="spacing">ZABIHA HALAL · MADE FRESH DAILY ·</textPath></text></svg>
+        <span>100%<br>Zabiha<br>Halal</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee"><div class="track">
+  <span>100% Zabiha Halal</span><span>Beef Shawarma</span><span>Falafel Friday</span><span>Baba Ghannouj</span><span>Kefta Kabob</span><span>Fattoush</span><span>Baklava</span>
+  <span>100% Zabiha Halal</span><span>Beef Shawarma</span><span>Falafel Friday</span><span>Baba Ghannouj</span><span>Kefta Kabob</span><span>Fattoush</span><span>Baklava</span>
+</div></div>
+
+<section id="specials">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><span class="eyebrow">This week</span><h2>Deals worth planning your week around.</h2></div>
+      <p>Lunch specials every day, plus two cult-favorite days that keep the line out the door.</p>
+    </div>
+    <div class="specials">
+      <div class="sp hot reveal"><div class="bigicon">🌯</div><span class="day">Every Tuesday</span><h3>Shawarma Tuesday</h3><p>Chicken shawarma, tomatoes and pickles wrapped in warm pita.</p><div class="price">$4.99</div></div>
+      <div class="sp green reveal"><div class="bigicon">🧆</div><span class="day">Every Friday</span><h3>Falafel Friday</h3><p>Our crispy falafel sandwich. Vegan, golden, ridiculously good.</p><div class="price">$4.99</div></div>
+      <div class="sp reveal"><div class="bigicon">🍚</div><span class="day">Lunch · Daily</span><h3>Special #1</h3><p>Rice, chicken shawarma, falafel and Mediterranean salad. Pita & sauces on the side.</p><div class="price">$9.99</div></div>
+      <div class="sp reveal"><div class="bigicon">🥙</div><span class="day">Lunch · Daily · Vegan</span><h3>Special #2</h3><p>Hummus, baba ghanoush and Mediterranean salad with pita and sauces.</p><div class="price">$9.99</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><span class="eyebrow">The menu</span><h2>Healthy ingredients, always fresh.</h2></div>
+      <p>Tap a category, or filter for vegan and gluten-free picks.</p>
+    </div>
+    <div class="controls">
+      <div class="tabs" id="tabs"></div>
+      <div class="filters">
+        <button class="filter" data-f="Vegan">🌱 Vegan</button>
+        <button class="filter" data-f="Vegetarian">🥕 Vegetarian</button>
+        <button class="filter" data-f="Gluten free">🌾 Gluten free</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal">
+      <div><span class="eyebrow">Your way</span><h2>However hunger hits.</h2></div>
+    </div>
+    <div class="ways">
+      <div class="way reveal"><span class="n">01</span><div class="emo">🍽️</div><h3>Dine-in</h3><p>Grab a table and eat it hot off the rotisserie.</p></div>
+      <div class="way reveal"><span class="n">02</span><div class="emo">🛍️</div><h3>Carry out</h3><p>Order online through ChowNow, skip the wait, pick up in minutes.</p></div>
+      <div class="way reveal"><span class="n">03</span><div class="emo">🛵</div><h3>Delivery</h3><p>Shawarma at your door across Rogers Park & Edgewater.</p></div>
+      <div class="way reveal"><span class="n">04</span><div class="emo">🎉</div><h3>Catering</h3><p>Trays of kabobs, dips and salads for any crowd.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="catering" style="padding-top:0">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="ring"></div>
+      <div>
+        <span class="eyebrow" style="color:var(--saffron)">Groups & catering</span>
+        <h2 style="margin-top:14px">Feeding the office?<br><em>We've got trays.</em></h2>
+        <p>From team lunches to family parties: hummus by the pound, kabob platters and falafel for everyone. Tell us the headcount and we'll handle the rest.</p>
+        <div class="cta-row">
+          <a href="https://www.milospita.com/groups" class="btn btn-primary">Plan a catering order</a>
+          <a href="tel:7737177699" class="btn btn-ghost">Call (773) 717-7699</a>
+        </div>
+      </div>
+      <div class="loyal">
+        <h3>Milo's Loyalty</h3>
+        <small>Every visit earns a stamp. Fill the card, eat on us.</small>
+        <div class="stamps"><i class="on">✦</i><i class="on">✦</i><i class="on">✦</i><i class="on">✦</i><i class="on">✦</i><i class="on">✦</i><i class="on">✦</i><i></i><i></i><i>🎁</i></div>
+        <a href="https://www.milospita.com/loyalty" class="btn btn-primary" style="background:var(--saffron);color:var(--ink);box-shadow:none">Join the club →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal"><div><span class="eyebrow">Come by</span><h2>Find us on Morse Ave.</h2></div><p>Right on Morse Ave, steps from the Morse Red Line stop. Patio seating outside.</p></div>
+    <div class="shots">
+      <figure class="shot big reveal"><img src="images/storefront.jpg" alt="Milo's Pita storefront on Morse Ave from above"><figcaption>1335 W Morse Ave</figcaption></figure>
+      <figure class="shot reveal"><img src="images/corner.jpg" alt="Milo's Pita corner with the Morse L tracks behind"><figcaption>Steps from the Red Line</figcaption></figure>
+      <figure class="shot reveal"><img src="images/patio.jpg" alt="Patio tables outside Milo's Pita"><figcaption>Outdoor patio</figcaption></figure>
+    </div>
+    <div class="visit">
+      <div class="card reveal">
+        <h3>Hours</h3>
+        <ul class="hours" id="hours"></ul>
+        <div class="contact">
+          <a href="https://maps.google.com/?q=1335+W+Morse+Ave+Chicago+IL+60626" target="_blank">📍 1335 W Morse Ave, Chicago, IL 60626</a>
+          <span>✅ All meats are 100% Zabiha Halal</span>
+          <a href="tel:7737177699">📞 (773) 717-7699</a>
+          <a href="mailto:milospita01@gmail.com">✉️ milospita01@gmail.com</a>
+        </div>
+      </div>
+      <div class="map reveal">
+        <iframe loading="lazy" title="Map" src="https://www.google.com/maps?q=1335+W+Morse+Ave,+Chicago,+IL+60626&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Hungry yet? <em>Come eat.</em></div>
+    <a href="#" class="logo"><img src="https://static.wixstatic.com/media/07a43a_13e13aaa2d6841c8a170012978d8547d~mv2.jpg/v1/fill/w_240,h_240,q_90/milos-logo.jpg" alt="Milo's Pita"></a>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:14px">
+      <a href="#" data-order>Order online</a>
+      <a href="https://www.milospita.com/job-application">We're hiring</a>
+      <a href="https://www.milospita.com/loyalty">Loyalty</a>
+      <span>© 2026 Milo's Pita</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar"><a href="#" data-order class="btn btn-primary">Order Online →</a></div>
+
+<script>
+// ChowNow ordering link: paste the restaurant's ChowNow URL here once it's set up.
+// Every "Order" button on the page uses it.
+const ORDER_URL = "";
+const FALLBACK_URL = "https://www.milospita.com/online-ordering";
+document.querySelectorAll('[data-order]').forEach(a=>{
+  a.href = ORDER_URL || FALLBACK_URL;
+  a.target = "_blank"; a.rel = "noopener";
+});
+
+const M = {
+  "Appetizers":[
+    ["Hummus","Chickpea dip blended with tahini, olive oil, red pepper & parsley. With pita.","$5.99 / $7.99",["Vegetarian","Vegan"]],
+    ["Baba Ghannouj","Roasted eggplant dip with tahini, olive oil & parsley. With pita.","$6.99 / $8.99",["Vegetarian","Vegan"]],
+    ["Falafel","Fried ground chickpeas with onions, parsley & spices.","$6.99 / $10.99",["Vegetarian","Vegan"]],
+    ["Dolma","Six grape leaves stuffed with rice, veggies & spices.","$6.99",["Vegetarian","Vegan"]],
+    ["Cheese Rolls (Bourak)","Three crispy fried cheese rolls.","$7.99",["Vegetarian"]],
+    ["Meza","Feta cheese, olives & cucumbers.","$8.99",["Vegetarian"]],
+    ["Feta Fries","Fries with feta, fresh lemon & oregano.","$9.99",["Vegetarian"]],
+    ["Falafel Fries","Fries topped with falafel, tomato, onion, parsley & tahini.","$10.99",["Vegetarian"]],
+    ["Shawarma Fries","Fries loaded with chicken or beef shawarma, veggies & tahini.","$12.99",[]],
+    ["Fries","Deep fried to perfection.","$4.99",["Vegetarian","Vegan"]]
+  ],
+  "Plates":[
+    ["Beef Shawarma Plate","Marinated beef from the slow rotisserie, with rice, salad & pita.","$19.99",[]],
+    ["Chicken Shawarma Plate","Thinly sliced marinated rotisserie chicken.","$18.99",[]],
+    ["Steak Kabob Plate","Tender marinated beef grilled on a skewer.","$21.99",[]],
+    ["Chicken Kabob Plate","Marinated chicken breast grilled on a skewer.","$19.99",[]],
+    ["Kefta Kabob Plate","Ground beef with onion & parsley, grilled on a skewer.","$20.99",[]],
+    ["2-Way Combo","Your choice of any two meats.","$21.99",[]],
+    ["3-Way Combo","Your choice of three meats.","$23.99",[]],
+    ["Falafel Plate","Crispy falafel with rice, salad & pita.","$15.99",["Vegetarian","Vegan"]],
+    ["Vegetarian Plate","Falafel, hummus, Mediterranean salad & baba ghannouj.","$16.99",["Vegetarian","Vegan"]],
+    ["BBQ Chicken Shawarma Plate","A smoky twist on the classic.","$19.99",[]]
+  ],
+  "Sandwiches":[
+    ["Beef Shawarma","Rotisserie beef in pita with tomato, onion, parsley & tahini.","$10.99",[]],
+    ["Chicken Shawarma","Rotisserie chicken in pita with fries, pickles & tahini.","$9.99",[]],
+    ["Steak Kabob","Grilled beef in pita with tomato, onion, parsley & tahini.","$12.99",[]],
+    ["Chicken Kabob","Grilled chicken with lettuce, tomato, pickles & tahini.","$10.99",[]],
+    ["Kefta Kabob","Grilled kefta with tomato, onion, parsley & tahini.","$11.99",[]],
+    ["Falafel","Falafel in pita with pickles, tomato & tahini.","$8.99",["Vegetarian"]],
+    ["Eggplant Falafel","Falafel, grilled eggplant, tomato, cucumber & tahini.","$9.99",["Vegetarian"]],
+    ["Hummus Veggie Wrap","Hummus, lettuce, tomato & tahini.","$7.99",["Vegetarian"]]
+  ],
+  "Saj":[
+    ["Beef Shawarma Saj","Pressed flatbread sandwich with fries & pickles.","$16.99",[]],
+    ["Chicken Shawarma Saj","Pressed flatbread sandwich with fries & pickles.","$15.99",[]],
+    ["Falafel Saj","Pressed flatbread sandwich with fries & pickles.","$14.99",["Vegetarian","Vegan"]],
+    ["Eggplant Falafel Saj","Grilled eggplant, tomato, cucumber & tahini, toasted.","$15.99",["Vegetarian","Vegan"]]
+  ],
+  "Bowls":[
+    ["Chicken Bowl","Rice, salad & chicken topped with tahini. With pita.","$12.99",[]],
+    ["Beef Shawarma Bowl","Rice, salad & beef topped with tahini. With pita.","$14.99",[]],
+    ["Kefta Bowl","Rice, salad & a kefta skewer with tahini.","$13.99",[]],
+    ["Falafel Bowl","Rice, salad & four falafel with tahini.","$11.99",["Vegetarian","Vegan"]],
+    ["Eggplant Bowl","Rice, salad & grilled eggplant with tahini.","$11.99",["Vegetarian","Vegan"]]
+  ],
+  "Salads":[
+    ["Mediterranean","Lettuce, tomato & cucumber with red wine vinaigrette & mint.","$9.99",["Gluten free","Vegetarian","Vegan"]],
+    ["Fattoush","Crisp veggies, pita chips, lemon, olive oil & sumac.","$10.99",["Vegetarian","Vegan"]],
+    ["Tabbouleh","Tomato, onion & parsley with lemon and olive oil.","$9.99",["Gluten free","Vegetarian","Vegan"]],
+    ["Greek","Veggies, feta & black olives with lemon and oregano.","$12.99",["Gluten free","Vegetarian"]],
+    ["Jerusalem","Cucumber, tomato & parsley in tahini.","$7.99",["Gluten free","Vegetarian","Vegan"]],
+    ["Chickpea","Chickpeas, tomato, cucumber & parsley with lemon.","$9.99",[]],
+    ["Lentil Soup","Homemade, every day.","$4.99",["Vegetarian"]]
+  ],
+  "Sweets":[
+    ["Nutella Saj","Flatbread with Nutella, pressed warm and crispy.","$4.99",[]],
+    ["Baklava","Flaky, nutty, honey-sweet.","$2.99",[]],
+    ["Strawberry Swirl Cheesecake","A slice of Eli's classic.","$4.00",[]]
+  ]
+};
+let cat = "Appetizers", filt = null;
+const tabs = document.getElementById('tabs'), grid = document.getElementById('grid');
+Object.keys(M).forEach(k=>{
+  const b=document.createElement('button');b.className='tab'+(k===cat?' active':'');b.textContent=k;
+  b.onclick=()=>{cat=k;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));render()};
+  tabs.appendChild(b);
+});
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
+  filt = filt===b.dataset.f?null:b.dataset.f;
+  document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x.dataset.f===filt));render();
+});
+function render(){
+  const items=M[cat].filter(i=>!filt||i[3].includes(filt));
+  grid.innerHTML = items.length ? items.map((i,n)=>`
+    <div class="item" style="animation-delay:${n*40}ms"><div class="txt">
+      <div class="row"><h4>${i[0]}</h4><span class="fill"></span><span class="pr">${i[2]}</span></div>
+      <p>${i[1]}</p>
+      ${i[3].length?`<div class="tags">${i[3].map(t=>`<span class="tag ${t==='Gluten free'?'gf':''}">${t}</span>`).join('')}</div>`:''}
+    </div></div>`).join('') : `<div class="empty">No ${filt.toLowerCase()} picks in ${cat}. Try another category.</div>`;
+}
+render();
+
+// Hours + live open status (Chicago time)
+const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const now=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Chicago"}));
+const d=now.getDay(), h=now.getHours()+now.getMinutes()/60;
+document.getElementById('hours').innerHTML=[1,2,3,4,5,6,0].map(i=>`<li class="${i===d?'today':''}"><span>${days[i]}</span><span>${i===0?'Closed':'11 AM – 9 PM'}</span></li>`).join('');
+const open = d!==0 && h>=11 && h<21;
+document.getElementById('dot').classList.toggle('open',open);
+document.getElementById('statusText').textContent = open ? "Open now · until 9 PM today" : (d===6&&h>=21||d===0 ? "Closed now · opens Monday at 11 AM" : "Closed now · opens at 11 AM");
+
+// Scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
