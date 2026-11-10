@@ -122,7 +122,11 @@ section{padding:110px 0}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
 .item{display:flex;gap:18px;padding:22px 0;border-bottom:1px dashed var(--line);animation:fadeUp .45s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
-.item .txt{flex:1}
+.item .txt{flex:1;min-width:0}
+.item .ph{flex:none;width:104px;height:104px;border-radius:16px;overflow:hidden;background:var(--line)}
+.item .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.item:hover .ph img{transform:scale(1.06)}
+@media (max-width:600px){.item .ph{width:78px;height:78px;border-radius:12px}}
 .item .row{display:flex;align-items:baseline;gap:10px}
 .item h4{font-family:Fraunces,serif;font-size:21px;font-weight:600}
 .item .fill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px)}
@@ -509,6 +513,19 @@ const M = {
     ["Strawberry Swirl Cheesecake","A slice of Eli's classic.","$4.00",[]]
   ]
 };
+// Dish photos from the Wix online-ordering menu (static.wixstatic.com media ids)
+const PH = {
+  "Hummus":"dbb64d9d3a164f11b8e472b3128e8750",
+  "Baba Ghannouj":"b4919a97cc4643be98ca7dbb92457dd7",
+  "Falafel|Appetizers":"bbb977e4b0654d6eb48fd92a42388597",
+  "Shawarma Fries":"87fd440e957843a1bde4ecd3f8dd4354",
+  "Beef Shawarma Plate":"6ac25563afaa4b82a7a13d6688572d09",
+  "Chicken Shawarma Plate":"5674d397be814732a44f1734ce4fc2e9",
+  "Steak Kabob Plate":"fc82a7e01d044f3ea2add0d8ab71b944",
+  "Chicken Kabob Plate":"523bd0d322f54718a7ed49c521760357",
+  "Chickpea":"6bcc774341c944518a0020e8dc71d674"
+};
+const photo=(name,c)=>{const id=PH[name+'|'+c]||PH[name];return id?`https://static.wixstatic.com/media/07a43a_${id}~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,enc_auto/${encodeURIComponent(name)}.jpg`:null};
 let cat = "Appetizers", filt = null;
 const tabs = document.getElementById('tabs'), grid = document.getElementById('grid');
 Object.keys(M).forEach(k=>{
@@ -523,7 +540,7 @@ document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
 function render(){
   const items=M[cat].filter(i=>!filt||i[3].includes(filt));
   grid.innerHTML = items.length ? items.map((i,n)=>`
-    <div class="item" style="animation-delay:${n*40}ms"><div class="txt">
+    <div class="item" style="animation-delay:${n*40}ms">${(u=>u?`<div class="ph"><img src="${u}" alt="${i[0]}" loading="lazy" width="104" height="104"></div>`:'')(photo(i[0],cat))}<div class="txt">
       <div class="row"><h4>${i[0]}</h4><span class="fill"></span><span class="pr">${i[2]}</span></div>
       <p>${i[1]}</p>
       ${i[3].length?`<div class="tags">${i[3].map(t=>`<span class="tag ${t==='Gluten free'?'gf':''}">${t}</span>`).join('')}</div>`:''}
